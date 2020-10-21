@@ -1,6 +1,21 @@
 [
     {
         "id": "dsvsAS34VSssaaab",
-        "city": "MyTestCity"
+        "cityName": "MyTestCity",
+        "businesses": 
+        [{
+          "id": "dsvsAS34VSssaaac",
+          "businessName": "TestBus",
+          "city": "MyTestCity",
+          "reviews": 
+          [{
+            "id": "dsvsAS34VSssaaaa",
+            "businessName": "TestBus",
+            "city": "MyTestCity",
+            "authorName": "test Guy",
+            "rating": 3.4,
+            "text": "blah blah blah blah blah this is text"
+          }]
+        }]
     }
 ]

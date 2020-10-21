@@ -4,9 +4,9 @@ import {Router} from '@angular/router';
 
 import { Review } from '../../types/review';
 import { ReviewModelService } from '../../services/review-model.service';
-import { City } from '../../types/City';
+import { City } from '../../types/city';
 import { CityModelService } from '../../services/city-model.service';
-import { Business } from '../../types/Business';
+import { Business } from '../../types/business';
 import { BusinessModelService } from '../../services/business-model.service';
 
 import { IdServiceService } from '../../services/id-service.service';
