@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 
-import { Review } from '../../types/review'
-
+import { Review } from '../../types/review';
+import { ReviewModelService } from '../../services/reviewModel.service'
 import reviews from '../../../assets/reviews.json';
 
 
@@ -22,9 +22,11 @@ export class AddreviewComponent implements OnInit {
   selectedValue = "None";
   views = ['City', 'Business', 'Review'];
 
-  reviewData: Array<Review> = reviews;
+  reviewData: Array<Review>;
 
-  constructor(public fb: FormBuilder) { }
+  constructor(public fb: FormBuilder, private model: ReviewModelService) { 
+    this.reviewData = model.getData();
+  }
 
   ngOnInit() {
     this.selectForm = this.fb.group({
@@ -60,7 +62,7 @@ export class AddreviewComponent implements OnInit {
     console.log(this.businessForm.value);
   }
   submitReview() {
-    this.reviewData.push({
+    this.reviewData = this.model.addData({
       businessName: this.reviewForm.value.businessName,
       city: this.reviewForm.value.city,
       authorName: this.reviewForm.value.authorName,

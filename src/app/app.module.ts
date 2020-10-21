@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReviewModelService } from './services/reviewModel.service';
+import { IdServiceService } from './services/id-service.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ReviewModelService, IdServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
