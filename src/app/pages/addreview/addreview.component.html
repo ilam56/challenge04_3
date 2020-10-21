@@ -1,0 +1,42 @@
+<h3>Choose what to add</h3>
+<form [formGroup]="selectForm" (ngSubmit)="submitForm(selectForm)" id="test"> 
+    <select formControlName="selection" (change)="selected()" name="selection">
+        <!-- for view in views { -->
+      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+        <!-- } -->
+    </select>
+</form>
+<br>
+<hr>
+<br>
+<div [ngSwitch]="selectedValue">
+  <form *ngSwitchCase = "'City'" [formGroup]="cityForm" (ngSubmit)="submitCity()">
+    <input type="text" formControlName="cityName" name="cityName" placeholder="City Name">
+    <button>Submit</button>
+  </form>
+  <form *ngSwitchCase = "'Business'" [formGroup]="businessForm" (ngSubmit)="submitBusiness()">
+    <select formControlName="city" name="city">
+      <option value="-1" default>Select City</option>
+        <!-- for view in views { -->
+      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+        <!-- } -->
+    </select>
+    <br>
+    <br>
+    <input type="text" formControlName="businessName" name="businessName" placeholder="Business Name">
+    <br>
+    <br>
+    <input type="text" formControlName="authorName" name="businessName" placeholder="Your Name">
+    <br>
+    <br>
+    <input type="range" formControlName="rating"  name="rating" min="1" max="5" value="5" step="0.1" class="slider" id="myRange" (change)="rated()">
+    <span> {{rating}}</span>
+    <br>
+    <br>
+    <textarea formControlName="text" name = "text" id = "myTextArea" rows = "4" cols = "80">Your text here</textarea>
+    <br>
+    <button>Submit</button>
+  </form>
+</div>
+    
+  
