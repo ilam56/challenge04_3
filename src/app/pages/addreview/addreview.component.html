@@ -11,19 +11,47 @@
 <br>
 <div [ngSwitch]="selectedValue">
   <form *ngSwitchCase = "'City'" [formGroup]="cityForm" (ngSubmit)="submitCity()">
-    <input type="text" formControlName="cityName" name="cityName" placeholder="City Name">
+    <input type="text" formControlName="cityName" name="cityName" placeholder="City Name" required>
+    <br>
+    <br>
     <button>Submit</button>
   </form>
   <form *ngSwitchCase = "'Business'" [formGroup]="businessForm" (ngSubmit)="submitBusiness()">
+    <label for="city">City Name: </label>
+    <select formControlName="city" name="city" required>
+        <!-- for view in views { -->
+      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+        <!-- } -->
+    </select>
+    <div *ngIf="buscity.invalid && (buscity.dirty || buscity.touched)">
+      <div *ngIf="buscity.errors.required">
+        City name is required.
+      </div>
+    </div>
+    <br>
+    <br>
+    <input type="text" formControlName="businessName" name="businessName" placeholder="Business Name">
+    <br>
+    <br>
+    <button>Submit</button>
+  </form>
+
+
+  <form *ngSwitchCase = "'Review'" [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+    <label for="city">City Name: </label>
     <select formControlName="city" name="city">
-      <option value="-1" default>Select City</option>
         <!-- for view in views { -->
       <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
         <!-- } -->
     </select>
     <br>
     <br>
-    <input type="text" formControlName="businessName" name="businessName" placeholder="Business Name">
+    <label for="city">Business Name: </label>
+    <select formControlName="businessName" name="businessName">
+        <!-- for view in views { -->
+      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+        <!-- } -->
+    </select>
     <br>
     <br>
     <input type="text" formControlName="authorName" name="businessName" placeholder="Your Name">

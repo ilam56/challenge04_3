@@ -14,8 +14,9 @@ export class AddreviewComponent implements OnInit {
   selectForm: FormGroup;
   cityForm: FormGroup;
   businessForm: FormGroup;
+  reviewForm: FormGroup;
   selectedValue = "None";
-  views = ['Select One', 'City', 'Business', 'Review'];
+  views = ['City', 'Business', 'Review'];
 
   constructor(public fb: FormBuilder) { }
 
@@ -28,10 +29,14 @@ export class AddreviewComponent implements OnInit {
     });
     this.businessForm = this.fb.group({
         businessName: ['', Validators.required],
+        city: ['', Validators.required]
+    });
+    this.reviewForm = this.fb.group({
+        businessName: ['', Validators.required],
         city: ['', Validators.required],
         authorName: ['', Validators.required],
         rating: ['', Validators.required],
-        text: ['', Validators.required],
+        text: ['', Validators.required]
     });
   }
 
@@ -48,11 +53,15 @@ export class AddreviewComponent implements OnInit {
   submitBusiness() {
     console.log(this.businessForm.value);
   }
-
+  submitReview() {
+    console.log(this.reviewForm.value);
+  }
   selected() {
     this.selectedValue = this.selectForm.value.selection;
   }
   rated() {
-    this.rating = this.businessForm.value.rating;
+    this.rating = this.reviewForm.value.rating;
   }
+
+  get buscity() { return this.businessForm.get('city'); }
 }
