@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 
+import { Review } from '../../types/review'
+
+import reviews from '../../../assets/reviews.json';
+
 
 @Component({
   selector: 'app-addreview',
@@ -17,6 +21,8 @@ export class AddreviewComponent implements OnInit {
   reviewForm: FormGroup;
   selectedValue = "None";
   views = ['City', 'Business', 'Review'];
+
+  reviewData: Array<Review> = reviews;
 
   constructor(public fb: FormBuilder) { }
 
@@ -54,7 +60,13 @@ export class AddreviewComponent implements OnInit {
     console.log(this.businessForm.value);
   }
   submitReview() {
-    console.log(this.reviewForm.value);
+    this.reviewData.push({
+      businessName: this.reviewForm.value.businessName,
+      city: this.reviewForm.value.city,
+      authorName: this.reviewForm.value.authorName,
+      rating: this.reviewForm.value.rating,
+      text: this.reviewForm.value.text
+    });
   }
   selected() {
     this.selectedValue = this.selectForm.value.selection;
