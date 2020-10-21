@@ -3,8 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 
 import { Review } from '../../types/review';
-import { ReviewModelService } from '../../services/reviewModel.service'
-import reviews from '../../../assets/reviews.json';
+import { ReviewModelService } from '../../services/review-model.service';
+import { City } from '../../types/City';
+import { CityModelService } from '../../services/city-model.service';
+import { Business } from '../../types/Business';
+import { BusinessModelService } from '../../services/business-model.service';
+
+import { IdServiceService } from '../../services/id-service.service';
 
 
 @Component({
@@ -21,13 +26,16 @@ export class AddreviewComponent implements OnInit {
   reviewForm: FormGroup;
   selectedValue = "None";
   views = ['City', 'Business', 'Review'];
+  businessViews = [''];
 
   reviewData: Array<Review>;
+  cityData: Array<City>;
+  businessData: Array<Business>;
 
-  constructor(public fb: FormBuilder, private model: ReviewModelService) { 
-    this.reviewData = model.getData();
+
+  constructor(public fb: FormBuilder, private reviewModel: ReviewModelService, private cityModel: CityModelService, private businessModel: BusinessModelService, private idModel: IdServiceService) { 
   }
-
+ 
   ngOnInit() {
     this.selectForm = this.fb.group({
         selection: ['']
@@ -56,13 +64,21 @@ export class AddreviewComponent implements OnInit {
   }
 
   submitCity() {
-    console.log(this.cityForm.value);
+    this.cityData = this.cityModel.addData({
+      id: this.idModel.generateId(),
+      cityName: this.cityForm.value.cityName
+    });
   }
   submitBusiness() {
-    console.log(this.businessForm.value);
+    this.businessData = this.businessModel.addData({
+      id: this.idModel.generateId(),
+      businessName: this.businessForm.value.businessName,
+      city: this.businessForm.value.city,
+    });
   }
   submitReview() {
-    this.reviewData = this.model.addData({
+    this.reviewData = this.reviewModel.addData({
+      id: this.idModel.generateId(),
       businessName: this.reviewForm.value.businessName,
       city: this.reviewForm.value.city,
       authorName: this.reviewForm.value.authorName,

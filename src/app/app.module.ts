@@ -13,8 +13,10 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ReviewModelService } from './services/reviewModel.service';
+import { ReviewModelService } from './services/review-model.service';
 import { IdServiceService } from './services/id-service.service';
+import { CityModelService } from './services/city-model.service';
+import { BusinessModelService } from './services/business-model.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { IdServiceService } from './services/id-service.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ReviewModelService, IdServiceService],
+  providers: [ReviewModelService, IdServiceService, CityModelService, BusinessModelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
