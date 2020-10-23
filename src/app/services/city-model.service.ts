@@ -11,10 +11,7 @@ export class CityModelService {
   data: Array<City> = cities;
 
   constructor() { 
-      this.data =
-      localStorage.getItem('cities') !== null
-        ? JSON.parse(localStorage.getItem('cities'))
-        : cities;
+      this.data = this.getData();
   
   }
 
@@ -52,6 +49,7 @@ export class CityModelService {
     }
   }
 
+
   getReviews(cityId: string, busId: string){
     var bus: Array<Business> = this.getCityBusinesses(cityId);
     var x;
@@ -61,6 +59,51 @@ export class CityModelService {
       }
     }
   }
+  addBusData(formObject: Business) {
+    this.data = this.getData();
+    var x;
+    var count1 = 0;
+    for (x of this.data) {
+      if (x.cityName === formObject.city){
+        break;
+      } 
+      count1 += 1;
+    }
+    this.data[count1].businesses.push(formObject);
+
+    localStorage.setItem('cities', JSON.stringify(this.data));
+
+    console.log(this.data);
+    return this.data;
+  }
+
+  addRevData(formObject: Review) {
+    this.data = this.getData();
+    
+    var x;
+    var count1 = 0;
+    var count2 = 0;
+    var k;
+    for (x of this.data) {
+      if (x.cityName === formObject.city){
+        for(k of x.businesses){
+          if(k.businessName === formObject.businessName){
+            break;
+          }
+          count2 += 1;
+        }
+        break;
+      } 
+      count1 += 1;
+    }
+    this.data[count1][count2].reviews.push(formObject);
+
+    localStorage.setItem('cites', JSON.stringify(this.data));
+
+    console.log(this.data);
+    return this.data;
+  }
+
 
   getBusinessName(cityId: string, busId: string){
     var bus: Array<Business> = this.getCityBusinesses(cityId);

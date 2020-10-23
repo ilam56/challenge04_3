@@ -40,7 +40,7 @@ export class AddreviewComponent implements OnInit {
 
   
 
-  constructor(public fb: FormBuilder, private reviewModel: ReviewModelService, private cityModel: CityModelService, private businessModel: BusinessModelService, private idModel: IdServiceService, private router: Router) { 
+  constructor(public fb: FormBuilder, private cityModel: CityModelService, private idModel: IdServiceService, private router: Router) { 
     this.cityData = cityModel.getData();
     this.cityNames = cityModel.getCityNames();
   }
@@ -91,7 +91,7 @@ export class AddreviewComponent implements OnInit {
 
   submitBusiness() {
     if(!this.businessForm.invalid){
-      this.cityData = this.businessModel.addData({
+      this.cityData = this.cityModel.addBusData({
         id: this.idModel.generateId(),
         businessName: this.businessForm.value.businessName,
         service: this.businessForm.value.service,
@@ -110,7 +110,7 @@ export class AddreviewComponent implements OnInit {
   }
   submitReview() {
     if(!this.reviewForm.invalid){
-      this.cityData = this.reviewModel.addData({
+      this.cityData = this.cityModel.addRevData({
         id: this.idModel.generateId(),
         businessName: this.reviewForm.value.businessName,
         city: this.reviewForm.value.city,
