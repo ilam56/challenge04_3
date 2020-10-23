@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Business } from '../types/business'
 
 import businesses from '../../assets/businesses.json';
+import { City } from '../types/city'
+
+import cities from '../../assets/cities.json';
+
 
 
 @Injectable()
 export class BusinessModelService {
 
-  data: Array<Business> = businesses;
+  data: Array<City> = cities;
 
   constructor() { 
       this.data =
@@ -22,8 +26,15 @@ export class BusinessModelService {
       localStorage.getItem('businesses') !== null
         ? JSON.parse(localStorage.getItem('businesses'))
         : businesses;
-
-    this.data.push(formObject);
+    var x;
+    var count1 = 0;
+    for (x in this.data) {
+      if (x.cityName === formObject.city){
+        break;
+      } 
+      count1 += 1;
+    }
+    this.data[count1].businesses.push(formObject);
 
     localStorage.setItem('businesses', JSON.stringify(this.data));
 

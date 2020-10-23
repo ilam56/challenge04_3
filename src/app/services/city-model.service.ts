@@ -29,7 +29,7 @@ export class CityModelService {
     return this.data;
   }
 
-  getData() {
+  getData(): City[] {
     this.data =
       localStorage.getItem('cities') !== null
         ? JSON.parse(localStorage.getItem('cities'))
