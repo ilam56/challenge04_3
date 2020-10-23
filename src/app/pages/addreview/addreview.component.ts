@@ -33,9 +33,9 @@ export class AddreviewComponent implements OnInit {
   cityNames: Array<String>;
   businessViews = [''];
 
-  reviewData: Array<Review>;
+  reviewData: Review[] = [];
   cityData: City[];
-  businessData: Array<Business>;
+  businessData: Array<Business> = [];
 
   
 

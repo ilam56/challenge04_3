@@ -15,10 +15,11 @@ export class CitiesComponent implements OnInit {
   constructor(private cityModel: CityModelService) {
     this.cityData = cityModel.getData();
     this.totalBusinesses = cityModel.getTotalBusinesses();
+    //localStorage.clear();
   }
 
   ngOnInit() {
-
+    localStorage.clear();
   }
 
 }

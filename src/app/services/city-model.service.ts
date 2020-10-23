@@ -74,7 +74,9 @@ export class CityModelService {
     var x;
     var count = 0;
     for(x of this.data){
-      count+= x.businesses.length
+      if(x.businesses){
+        count+= x.businesses.length
+      }
     }
     return count;
   }
