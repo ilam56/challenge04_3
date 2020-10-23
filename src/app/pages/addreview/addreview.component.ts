@@ -32,6 +32,7 @@ export class AddreviewComponent implements OnInit {
   views = ['City', 'Business', 'Review'];
   cityNames: Array<String>;
   businessViews = [''];
+  spamCheck: Boolean;
 
   reviewData: Review[] = [];
   cityData: City[];
@@ -39,7 +40,7 @@ export class AddreviewComponent implements OnInit {
 
   
 
-  constructor(public fb: FormBuilder, private reviewModel: ReviewModelService, private cityModel: CityModelService, private businessModel: BusinessModelService, private idModel: IdServiceService) { 
+  constructor(public fb: FormBuilder, private reviewModel: ReviewModelService, private cityModel: CityModelService, private businessModel: BusinessModelService, private idModel: IdServiceService, private router: Router) { 
     this.cityData = cityModel.getData();
     this.cityNames = cityModel.getCityNames();
   }
@@ -63,41 +64,69 @@ export class AddreviewComponent implements OnInit {
         rating: ['', Validators.required],
         text: ['', Validators.required]
     });
+    this.spamCheck = false;
     //console.log(this.cityModel.getCityNames());
     //localStorage.clear();
   }
 
 
-  submitForm(form: FormGroup) {
-    console.log(this.selectForm.value);
-  }
 
   submitCity() {
-    this.cityData = this.cityModel.addData({
-      id: this.idModel.generateId(),
-      cityName: this.cityForm.value.cityName,
-      businesses: this.businessData
-    });
+    if(!this.cityForm.invalid && this.spamCheck == false){
+      this.cityData = this.cityModel.addData({
+        id: this.idModel.generateId(),
+        cityName: this.cityForm.value.cityName,
+        businesses: this.businessData
+      });
+      this.spamCheck = true;
+      this.router.navigate(['']);
+    } else {
+      //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
+        Object.keys(this.cityForm.controls).forEach(field => { 
+          const control = this.cityForm.get(field);           
+          control.markAsTouched({ onlySelf: true });       
+        });
+    }
   }
 
   submitBusiness() {
-    this.cityData = this.businessModel.addData({
-      id: this.idModel.generateId(),
-      businessName: this.businessForm.value.businessName,
-      service: this.businessForm.value.service,
-      city: this.businessForm.value.city,
-      reviews: this.reviewData
-    });
+    if(!this.businessForm.invalid){
+      this.cityData = this.businessModel.addData({
+        id: this.idModel.generateId(),
+        businessName: this.businessForm.value.businessName,
+        service: this.businessForm.value.service,
+        city: this.businessForm.value.city,
+        reviews: this.reviewData
+      });
+      this.spamCheck = true;
+      this.router.navigate(['']);
+    } else {
+      //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
+        Object.keys(this.businessForm.controls).forEach(field => { 
+          const control = this.businessForm.get(field);           
+          control.markAsTouched({ onlySelf: true });       
+        });
+    }
   }
   submitReview() {
-    this.cityData = this.reviewModel.addData({
-      id: this.idModel.generateId(),
-      businessName: this.reviewForm.value.businessName,
-      city: this.reviewForm.value.city,
-      authorName: this.reviewForm.value.authorName,
-      rating: this.reviewForm.value.rating,
-      text: this.reviewForm.value.text
-    });
+    if(!this.reviewForm.invalid){
+      this.cityData = this.reviewModel.addData({
+        id: this.idModel.generateId(),
+        businessName: this.reviewForm.value.businessName,
+        city: this.reviewForm.value.city,
+        authorName: this.reviewForm.value.authorName,
+        rating: this.reviewForm.value.rating,
+        text: this.reviewForm.value.text
+      });
+      this.spamCheck = true;
+      this.router.navigate(['']);
+    } else {
+      //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
+        Object.keys(this.reviewForm.controls).forEach(field => { 
+          const control = this.reviewForm.get(field);           
+          control.markAsTouched({ onlySelf: true });       
+        });
+    }
   }
   selected() {
     this.selectedValue = this.selectForm.value.selection;
@@ -109,4 +138,5 @@ export class AddreviewComponent implements OnInit {
   get buscity() { return this.businessForm.get('city'); }
   get busname() { return this.businessForm.get('businessName'); }
   get busserv() { return this.businessForm.get('service'); }
+  get cityname() { return this.cityForm.get('cityName'); }
 }

@@ -23,9 +23,9 @@ export class BusinessModelService {
 
   addData(formObject: Business) {
     this.data =
-      localStorage.getItem('businesses') !== null
-        ? JSON.parse(localStorage.getItem('businesses'))
-        : businesses;
+      localStorage.getItem('cities') !== null
+        ? JSON.parse(localStorage.getItem('cities'))
+        : cities;
     var x;
     var count1 = 0;
     for (x of this.data) {

@@ -1,5 +1,5 @@
 <h3>Choose what to add</h3>
-<form [formGroup]="selectForm" (ngSubmit)="submitForm(selectForm)" id="test"> 
+<form [formGroup]="selectForm" id="test"> 
     <select formControlName="selection" (change)="selected()" name="selection">
         <!-- for view in views { -->
       <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
@@ -12,6 +12,11 @@
 <div [ngSwitch]="selectedValue">
   <form *ngSwitchCase = "'City'" [formGroup]="cityForm" (ngSubmit)="submitCity()">
     <input type="text" formControlName="cityName" name="cityName" placeholder="City Name" required>
+    <div *ngIf="cityname.invalid && (cityname.dirty || cityname.touched)">
+      <div class= "requireErr" *ngIf="cityname.errors.required">
+        City name is required.
+      </div>
+    </div>
     <br>
     <br>
     <button>Submit</button>

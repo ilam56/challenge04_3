@@ -19,7 +19,7 @@ export class CitiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.clear();
+    //localStorage.clear();
   }
 
 }
