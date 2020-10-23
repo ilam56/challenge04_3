@@ -36,7 +36,7 @@ export class BusinessModelService {
     }
     this.data[count1].businesses.push(formObject);
 
-    localStorage.setItem('businesses', JSON.stringify(this.data));
+    localStorage.setItem('cities', JSON.stringify(this.data));
 
     console.log(this.data);
     return this.data;

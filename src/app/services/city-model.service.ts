@@ -43,7 +43,10 @@ export class CityModelService {
     this.data = this.getData();
     var x;
     for (x of this.data){
+      console.log("x.id: " + x.id + ", id: " + id)
       if (x.id === id){
+        console.log("test");
+        console.log(this.getData());
         return x.businesses;
       }
     }

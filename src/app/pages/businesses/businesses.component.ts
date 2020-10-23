@@ -42,6 +42,7 @@ export class BusinessesComponent implements OnInit {
   }
   
   ngOnInit() {
+    console.log(this.businessData);
   }
 
 }
