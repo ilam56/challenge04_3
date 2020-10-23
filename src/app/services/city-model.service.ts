@@ -49,16 +49,23 @@ export class CityModelService {
     }
   }
 
-  getAverageReview(bus: Business){
-    if(bus.reviews.length > 0){
-      var total = 0;
-      var x;
-      for(x of bus.reviews){
-        total += x.rating;
+  getReviews(cityId: string, busId: string){
+    var bus: Array<Business> = this.getCityBusinesses(cityId);
+    var x;
+    for (x of bus){
+      if (x.id === busId){
+        return x.reviews;
       }
-      return total/bus.reviews.length;
-    } else {
-      return 0;
+    }
+  }
+
+  getBusinessName(cityId: string, busId: string){
+    var bus: Array<Business> = this.getCityBusinesses(cityId);
+    var x;
+    for (x of bus){
+      if (x.id === busId){
+        return x.businessName;
+      }
     }
   }
 
