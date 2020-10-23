@@ -30,6 +30,7 @@ export class AddreviewComponent implements OnInit {
   reviewForm: FormGroup;
   selectedValue = "None";
   views = ['City', 'Business', 'Review'];
+  cityNames: Array<String>;
   businessViews = [''];
 
   reviewData: Array<Review>;
@@ -40,6 +41,7 @@ export class AddreviewComponent implements OnInit {
 
   constructor(public fb: FormBuilder, private reviewModel: ReviewModelService, private cityModel: CityModelService, private businessModel: BusinessModelService, private idModel: IdServiceService) { 
     this.cityData = cityModel.getData();
+    this.cityNames = cityModel.getCityNames();
   }
  
   ngOnInit() {
@@ -51,6 +53,7 @@ export class AddreviewComponent implements OnInit {
     });
     this.businessForm = this.fb.group({
         businessName: ['', Validators.required],
+        service: ['', Validators.required],
         city: ['', Validators.required]
     });
     this.reviewForm = this.fb.group({
@@ -60,7 +63,8 @@ export class AddreviewComponent implements OnInit {
         rating: ['', Validators.required],
         text: ['', Validators.required]
     });
-    //localStorage.setItem('cities', null);
+    //console.log(this.cityModel.getCityNames());
+    //localStorage.clear();
   }
 
 
@@ -80,6 +84,7 @@ export class AddreviewComponent implements OnInit {
     this.cityData = this.businessModel.addData({
       id: this.idModel.generateId(),
       businessName: this.businessForm.value.businessName,
+      service: this.businessForm.value.service,
       city: this.businessForm.value.city,
       reviews: this.reviewData
     });
@@ -102,4 +107,6 @@ export class AddreviewComponent implements OnInit {
   }
 
   get buscity() { return this.businessForm.get('city'); }
+  get busname() { return this.businessForm.get('businessName'); }
+  get busserv() { return this.businessForm.get('service'); }
 }

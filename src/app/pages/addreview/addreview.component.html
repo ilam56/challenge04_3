@@ -20,17 +20,30 @@
     <label for="city">City Name: </label>
     <select formControlName="city" name="city" required>
         <!-- for view in views { -->
-      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+      <option *ngFor="let name of cityNames" [ngValue]="name"> {{name}} </option>
         <!-- } -->
     </select>
     <div *ngIf="buscity.invalid && (buscity.dirty || buscity.touched)">
-      <div *ngIf="buscity.errors.required">
+      <div class= "requireErr" *ngIf="buscity.errors.required">
         City name is required.
       </div>
     </div>
     <br>
     <br>
     <input type="text" formControlName="businessName" name="businessName" placeholder="Business Name">
+    <div *ngIf="busname.invalid && (busname.dirty || busname.touched)">
+      <div class= "requireErr" *ngIf="busname.errors.required">
+        Business name is required.
+      </div>
+    </div>
+    <br>
+    <br>
+    <input type="text" formControlName="service" name="service" placeholder="Service provided">
+    <div *ngIf="busserv.invalid && (busserv.dirty || busserv.touched)">
+      <div class= "requireErr" *ngIf="busserv.errors.required">
+        Service is required.
+      </div>
+    </div>
     <br>
     <br>
     <button>Submit</button>

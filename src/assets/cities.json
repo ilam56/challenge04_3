@@ -6,6 +6,7 @@
         [{
           "id": "dsvsAS34VSssaaac",
           "businessName": "TestBus",
+          "service": "Resurant",
           "city": "MyTestCity",
           "reviews": 
           [{
@@ -16,6 +17,35 @@
             "rating": 3.4,
             "text": "blah blah blah blah blah this is text"
           }]
+        }]
+    },
+    {
+        "id": "asvsAS34VSssaaab",
+        "cityName": "MyTestCity2",
+        "businesses": 
+        [{
+          "id": "asvsAS34VSssaaac",
+          "businessName": "TestBus2",
+          "service": "IT Help",
+          "city": "MyTestCity2",
+          "reviews": [
+          {
+            "id": "asvsAS34VSssaaaa",
+            "businessName": "TestBus2",
+            "city": "MyTestCity2",
+            "authorName": "test Guy2",
+            "rating": 3.4,
+            "text": "blah blah blah blah blah this is text"
+          },
+          {
+            "id": "asvsAS34VSssaaaa",
+            "businessName": "TestBus2",
+            "city": "MyTestCity2",
+            "authorName": "test Guy3",
+            "rating": 3.6,
+            "text": "blah blah blah blah blah this is text"
+          }
+          ]
         }]
     }
 ]

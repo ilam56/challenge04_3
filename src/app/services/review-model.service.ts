@@ -29,9 +29,9 @@ export class ReviewModelService {
     var count1 = 0;
     var count2 = 0;
     var k;
-    for (x in this.data) {
+    for (x of this.data) {
       if (x.cityName === formObject.city){
-        for(k in x.businesses){
+        for(k of x.businesses){
           if(k.businessName === formObject.businessName){
             break;
           }

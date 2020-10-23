@@ -1,1 +1,14 @@
-test
+<h3>Businesses for {{cityName}}</h3>
+<hr>
+<div *ngFor = "let business of businessData" class="container">
+  <h3><a routerLink = "/reviews" [queryParams]="{id: business.id}">{{business.businessName}}</a></h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      Services: {{business.service}}
+      <br>
+      Review Avg: {{getAverage(business)}}
+      <br>
+      Number of reviews: {{business.reviews.length}}
+      </div>
+  </div>
+</div>

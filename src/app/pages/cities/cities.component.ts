@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { City } from '../../types/city';
+import { CityModelService } from '../../services/city-model.service';
+
 
 @Component({
   selector: 'app-cities',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cities.component.css']
 })
 export class CitiesComponent implements OnInit {
+  cityData: Array<City>;
+  totalBusinesses: number;
 
-  constructor() { }
+  constructor(private cityModel: CityModelService) {
+    this.cityData = cityModel.getData();
+    this.totalBusinesses = cityModel.getTotalBusinesses();
+  }
 
   ngOnInit() {
+
   }
 
 }

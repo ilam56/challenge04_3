@@ -15,9 +15,9 @@ export class BusinessModelService {
 
   constructor() { 
       this.data =
-      localStorage.getItem('businesses') !== null
-        ? JSON.parse(localStorage.getItem('businesses'))
-        : businesses;
+      localStorage.getItem('cities') !== null
+        ? JSON.parse(localStorage.getItem('cities'))
+        : cities;
   
   }
 
@@ -28,7 +28,7 @@ export class BusinessModelService {
         : businesses;
     var x;
     var count1 = 0;
-    for (x in this.data) {
+    for (x of this.data) {
       if (x.cityName === formObject.city){
         break;
       } 
@@ -41,7 +41,18 @@ export class BusinessModelService {
     console.log(this.data);
     return this.data;
   }
-
+  getBusiness(id: string){
+    this.data =
+      localStorage.getItem('cities') !== null
+        ? JSON.parse(localStorage.getItem('cities'))
+        : cities;
+    var x;
+    for (x of this.data){
+      if (x.id === id){
+        return x.businesses;
+      }
+    }
+  }
   getData() {
     this.data =
       localStorage.getItem('businesses') !== null
