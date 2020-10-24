@@ -16,6 +16,9 @@
       <div class= "requireErr" *ngIf="cityname.errors.required">
         City name is required.
       </div>
+      <div class= "requireErr" *ngIf="cityname.errors.pattern">
+        City name must be only letters or spaces.
+      </div>
     </div>
     <br>
     <br>
@@ -32,6 +35,9 @@
       <div class= "requireErr" *ngIf="buscity.errors.required">
         City name is required.
       </div>
+      <div class= "requireErr" *ngIf="buscity.errors.pattern">
+        City name must be only letters or spaces.
+      </div>
     </div>
     <br>
     <br>
@@ -39,6 +45,9 @@
     <div *ngIf="busname.invalid && (busname.dirty || busname.touched)">
       <div class= "requireErr" *ngIf="busname.errors.required">
         Business name is required.
+      </div>
+      <div class= "requireErr" *ngIf="busname.errors.required">
+        Business name has invalid character.
       </div>
     </div>
     <br>

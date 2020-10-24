@@ -50,16 +50,16 @@ export class AddreviewComponent implements OnInit {
         selection: ['']
     });
     this.cityForm = this.fb.group({
-        cityName: ['', Validators.required]
+        cityName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
     });
     this.businessForm = this.fb.group({
-        businessName: ['', Validators.required],
+        businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?&-]*")]],
         service: ['', Validators.required],
-        city: ['', Validators.required]
+        city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
     });
     this.reviewForm = this.fb.group({
-        businessName: ['', Validators.required],
-        city: ['', Validators.required],
+        businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?&-]*")]],
+        city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
         authorName: ['', Validators.required],
         rating: ['', Validators.required],
         text: ['', Validators.required]
@@ -81,6 +81,8 @@ export class AddreviewComponent implements OnInit {
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
+      console.log("invalid");
+      console.log(this.cityname.errors.pattern);
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.cityForm.controls).forEach(field => { 
           const control = this.cityForm.get(field);           
@@ -139,4 +141,6 @@ export class AddreviewComponent implements OnInit {
   get busname() { return this.businessForm.get('businessName'); }
   get busserv() { return this.businessForm.get('service'); }
   get cityname() { return this.cityForm.get('cityName'); }
+  get revcity() { return this.reviewForm.get('city'); }
+  get revname() { return this.reviewForm.get('businessName'); }
 }
