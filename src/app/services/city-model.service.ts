@@ -87,18 +87,25 @@ export class CityModelService {
     for (x of this.data) {
       if (x.id === cityId){
         for(k of x.businesses){
+          console.log("point1");
+          console.log("k.id: " + k.id + " busId: " + busId);
           if(k.id === busId){
+            console.log("point2");
             break;
           }
+          console.log('point3');
           count2 += 1;
         }
         break;
       } 
       count1 += 1;
     }
-    this.data[count1][count2].reviews.push(formObject);
+    console.log(count1);
+    console.log(count2);
+    console.log(this.data[count1][count2]);
+    this.data[count1].businesses[count2].reviews.push(formObject);
 
-    localStorage.setItem('cites', JSON.stringify(this.data));
+    localStorage.setItem('cities', JSON.stringify(this.data));
 
     console.log(this.data);
     return this.data;

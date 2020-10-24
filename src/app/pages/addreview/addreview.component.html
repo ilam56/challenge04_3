@@ -43,7 +43,7 @@
       <div class= "requireErr" *ngIf="busname.errors.required">
         Business name is required.
       </div>
-      <div class= "requireErr" *ngIf="busname.errors.required">
+      <div class= "requireErr" *ngIf="busname.errors.pattern">
         Business name has invalid character.
       </div>
     </div>
@@ -98,6 +98,11 @@
     <br>
     <input type="range" formControlName="rating"  name="rating" min="1" max="5" value="5" step="0.1" class="slider" id="myRange" (change)="rated()">
     <span> {{rating}}</span>
+    <div *ngIf="revrating.invalid && (revrating.dirty || revrating.touched)">
+      <div class= "requireErr" *ngIf="revrating.errors.required">
+        Rating is required.
+      </div>
+    </div>
     <br>
     <br>
     <textarea formControlName="text" name = "text" id = "myTextArea" rows = "4" cols = "80">Your text here</textarea>

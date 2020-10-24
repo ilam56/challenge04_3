@@ -35,7 +35,8 @@ export class BusinessesComponent implements OnInit {
       for(x of bus.reviews){
         total += x.rating;
       }
-      return total/bus.reviews.length;
+      var num = total/bus.reviews.length;
+      return Math.round((num + Number.EPSILON) * 100) / 100
     } else {
       return 0;
     }

@@ -2,19 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
 
-import { Observable } from 'rxjs';
 
 
 import { Review } from '../../types/review';
-import { ReviewModelService } from '../../services/review-model.service';
 import { City } from '../../types/city';
 import { CityModelService } from '../../services/city-model.service';
 import { Business } from '../../types/business';
-import { BusinessModelService } from '../../services/business-model.service';
 
 import { IdServiceService } from '../../services/id-service.service';
 
-import cities from '../../../assets/cities.json';
 
 @Component({
   selector: 'app-addreview',
@@ -23,7 +19,7 @@ import cities from '../../../assets/cities.json';
 })
 export class AddreviewComponent implements OnInit {
 
-  rating = 5.0;
+  rating = null;
   selectForm: FormGroup;
   cityForm: FormGroup;
   businessForm: FormGroup;
@@ -53,6 +49,7 @@ export class AddreviewComponent implements OnInit {
         cityName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
     });
     this.businessForm = this.fb.group({
+        //note reg ex from https://stackoverflow.com/questions/39775023/regex-for-company-name-variations
         businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?& -]*")]],
         service: ['', Validators.required],
         city: ['', Validators.required]
@@ -120,10 +117,11 @@ export class AddreviewComponent implements OnInit {
         authorName: this.reviewForm.value.authorName,
         rating: this.reviewForm.value.rating,
         text: this.reviewForm.value.text
-      }, this.reviewForm.value.city, this.reviewForm.value.business);
+      }, this.reviewForm.value.city, this.reviewForm.value.businessName);
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
+      console.log("invalid");
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.reviewForm.controls).forEach(field => { 
           const control = this.reviewForm.get(field);           
@@ -154,4 +152,5 @@ export class AddreviewComponent implements OnInit {
   get revname() { return this.reviewForm.get('businessName'); }
   get revauth() { return this.reviewForm.get('authorName'); }
   get revtext() { return this.reviewForm.get('text'); }
+  get revrating() { return this.reviewForm.get('rating'); }
 }
