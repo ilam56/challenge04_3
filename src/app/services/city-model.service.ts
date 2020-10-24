@@ -77,7 +77,7 @@ export class CityModelService {
     return this.data;
   }
 
-  addRevData(formObject: Review) {
+  addRevData(formObject: Review, cityId: string, busId: string) {
     this.data = this.getData();
     
     var x;
@@ -85,9 +85,9 @@ export class CityModelService {
     var count2 = 0;
     var k;
     for (x of this.data) {
-      if (x.cityName === formObject.city){
+      if (x.id === cityId){
         for(k of x.businesses){
-          if(k.businessName === formObject.businessName){
+          if(k.id === busId){
             break;
           }
           count2 += 1;
@@ -133,6 +133,16 @@ export class CityModelService {
     for (x of this.data){
       if (x.id === id){
         return x.cityName;
+      }
+    }
+  }
+
+  getCity(id: string){
+    this.data = this.getData();
+    var x;
+    for (x of this.data){
+      if(x.id === id){
+        return x;
       }
     }
   }

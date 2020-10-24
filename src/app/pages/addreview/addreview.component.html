@@ -63,9 +63,9 @@
 
   <form *ngSwitchCase = "'Review'" [formGroup]="reviewForm" (ngSubmit)="submitReview()">
     <label for="city">City Name: </label>
-    <select formControlName="city" name="city">
+    <select formControlName="city" name="city" (change)="revCity()">
         <!-- for view in views { -->
-      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+      <option *ngFor="let city of cityData" [ngValue]="city.id"> {{city.cityName}} </option>
         <!-- } -->
     </select>
     <div *ngIf="revcity.invalid && (revcity.dirty || revcity.touched)">
@@ -76,9 +76,9 @@
     <br>
     <br>
     <label for="city">Business Name: </label>
-    <select formControlName="businessName" name="businessName">
+    <select formControlName="businessName" name="businessName" >
         <!-- for view in views { -->
-      <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
+      <option *ngFor="let bus of getCity(selectedRevCity)?.businesses" [ngValue]="bus.id"> {{bus.businessName}} </option>
         <!-- } -->
     </select>
     <div *ngIf="revname.invalid && (revname.dirty || revname.touched)">

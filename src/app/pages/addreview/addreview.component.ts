@@ -33,7 +33,7 @@ export class AddreviewComponent implements OnInit {
   cityNames: Array<String>;
   businessViews = [''];
   spamCheck: Boolean;
-
+  selectedRevCity: string;
   reviewData: Review[] = [];
   cityData: City[];
   businessData: Array<Business> = [];
@@ -53,7 +53,7 @@ export class AddreviewComponent implements OnInit {
         cityName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
     });
     this.businessForm = this.fb.group({
-        businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?&-]*")]],
+        businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?& -]*")]],
         service: ['', Validators.required],
         city: ['', Validators.required]
     });
@@ -103,6 +103,7 @@ export class AddreviewComponent implements OnInit {
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
+      console.log("invalid");
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.businessForm.controls).forEach(field => { 
           const control = this.businessForm.get(field);           
@@ -115,11 +116,11 @@ export class AddreviewComponent implements OnInit {
       this.cityData = this.cityModel.addRevData({
         id: this.idModel.generateId(),
         businessName: this.reviewForm.value.businessName,
-        city: this.reviewForm.value.city,
+        city: this.cityModel.getCityName(this.reviewForm.value.city),
         authorName: this.reviewForm.value.authorName,
         rating: this.reviewForm.value.rating,
         text: this.reviewForm.value.text
-      });
+      }, this.reviewForm.value.city, this.reviewForm.value.business);
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
@@ -133,8 +134,16 @@ export class AddreviewComponent implements OnInit {
   selected() {
     this.selectedValue = this.selectForm.value.selection;
   }
+
+  revCity() {
+    this.selectedRevCity = this.reviewForm.value.city;
+  }
   rated() {
     this.rating = this.reviewForm.value.rating;
+  }
+
+  getCity(id: string): City {
+    return this.cityModel.getCity(id);
   }
 
   get buscity() { return this.businessForm.get('city'); }
