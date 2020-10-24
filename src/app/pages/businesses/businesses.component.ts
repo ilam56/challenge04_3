@@ -17,7 +17,7 @@ export class BusinessesComponent implements OnInit {
   id: string;
 
   constructor(private cityModel: CityModelService, private route: ActivatedRoute) {
-    route.queryParams.subscribe( params => {
+    route.params.subscribe( params => {
       this.id = params['id'];
     })
   

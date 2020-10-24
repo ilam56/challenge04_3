@@ -15,7 +15,7 @@ export class ReviewsComponent implements OnInit {
   businessName: string;
 
   constructor(private cityModel: CityModelService, private route: ActivatedRoute) { 
-      route.queryParams.subscribe( params => {
+      route.params.subscribe( params => {
       this.cityId = params['cityId'];
       this.busId = params['busId'];
     })
