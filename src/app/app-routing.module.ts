@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsComponent},
   { path: 'businesses', component: BusinessesComponent},
   { path: 'addreview', component: AddreviewComponent},
-  { path: '**', component: NotfoundComponent},
+  { path: '404', component: NotfoundComponent},
+  { path: '**', redirectTo: '/404'}
+
 ];
 
 @NgModule({
