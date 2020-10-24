@@ -35,9 +35,6 @@
       <div class= "requireErr" *ngIf="buscity.errors.required">
         City name is required.
       </div>
-      <div class= "requireErr" *ngIf="buscity.errors.pattern">
-        City name must be only letters or spaces.
-      </div>
     </div>
     <br>
     <br>
@@ -71,6 +68,11 @@
       <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
         <!-- } -->
     </select>
+    <div *ngIf="revcity.invalid && (revcity.dirty || revcity.touched)">
+      <div class= "requireErr" *ngIf="revcity.errors.required">
+        City name is required.
+      </div>
+    </div>
     <br>
     <br>
     <label for="city">Business Name: </label>
@@ -79,9 +81,19 @@
       <option *ngFor="let view of views" [ngValue]="view"> {{view}} </option>
         <!-- } -->
     </select>
+    <div *ngIf="revname.invalid && (revname.dirty || revname.touched)">
+      <div class= "requireErr" *ngIf="revname.errors.required">
+        Business name is required.
+      </div>
+    </div>
     <br>
     <br>
     <input type="text" formControlName="authorName" name="businessName" placeholder="Your Name">
+    <div *ngIf="revauth.invalid && (revauth.dirty || revauth.touched)">
+      <div class= "requireErr" *ngIf="revauth.errors.required">
+        Author name is required.
+      </div>
+    </div>
     <br>
     <br>
     <input type="range" formControlName="rating"  name="rating" min="1" max="5" value="5" step="0.1" class="slider" id="myRange" (change)="rated()">
@@ -89,6 +101,11 @@
     <br>
     <br>
     <textarea formControlName="text" name = "text" id = "myTextArea" rows = "4" cols = "80">Your text here</textarea>
+    <div *ngIf="revtext.invalid && (revtext.dirty || revtext.touched)">
+      <div class= "requireErr" *ngIf="revtext.errors.required">
+        Review text is required.
+      </div>
+    </div>
     <br>
     <button>Submit</button>
   </form>

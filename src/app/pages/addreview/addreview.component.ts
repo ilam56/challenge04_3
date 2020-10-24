@@ -55,11 +55,11 @@ export class AddreviewComponent implements OnInit {
     this.businessForm = this.fb.group({
         businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?&-]*")]],
         service: ['', Validators.required],
-        city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
+        city: ['', Validators.required]
     });
     this.reviewForm = this.fb.group({
-        businessName: ['', [Validators.required, Validators.pattern("[0-9A-Za-zÀ-ÿ\s,._+;()*~'#@!?&-]*")]],
-        city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+        businessName: ['', Validators.required],
+        city: ['', Validators.required],
         authorName: ['', Validators.required],
         rating: ['', Validators.required],
         text: ['', Validators.required]
@@ -143,4 +143,6 @@ export class AddreviewComponent implements OnInit {
   get cityname() { return this.cityForm.get('cityName'); }
   get revcity() { return this.reviewForm.get('city'); }
   get revname() { return this.reviewForm.get('businessName'); }
+  get revauth() { return this.reviewForm.get('authorName'); }
+  get revtext() { return this.reviewForm.get('text'); }
 }

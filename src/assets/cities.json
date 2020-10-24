@@ -21,18 +21,18 @@
     },
     {
         "id": "asvsAS34VSssaaab",
-        "cityName": "MyTestCity2",
+        "cityName": "MyTestCitySecond",
         "businesses": 
         [{
           "id": "asvsAS34VSssaaac",
           "businessName": "TestBus2",
           "service": "IT Help",
-          "city": "MyTestCity2",
+          "city": "MyTestCitySecond",
           "reviews": [
           {
             "id": "asvsAS34VSssaaaa",
             "businessName": "TestBus2",
-            "city": "MyTestCity2",
+            "city": "MyTestCitySecond",
             "authorName": "test Guy2",
             "rating": 3.4,
             "text": "blah blah blah blah blah this is text"
