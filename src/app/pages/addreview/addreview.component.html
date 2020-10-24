@@ -28,7 +28,7 @@
     <label for="city">City Name: </label>
     <select formControlName="city" name="city" required>
         <!-- for view in views { -->
-      <option *ngFor="let name of cityNames" [ngValue]="name"> {{name}} </option>
+      <option *ngFor="let city of cityData" [ngValue]="city.id"> {{city.cityName}} </option>
         <!-- } -->
     </select>
     <div *ngIf="buscity.invalid && (buscity.dirty || buscity.touched)">

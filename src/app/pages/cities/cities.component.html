@@ -1,7 +1,7 @@
 <h3>List of Cites:</h3>
 <p>With a total of {{totalBusinesses}} businesses.</p>
 <hr>
-<a class="btn btn-primary" routerLink = "/addreview" role="button">Add</a>
+<a class="btn btn-primary back" routerLink = "/addreview" role="button">Add</a>
 <div *ngFor = "let city of cityData" class="container">
   <h3><a routerLink = "/businesses" [queryParams]="{id: city.id}">{{city.cityName}}</a></h3>
   <div class="panel panel-default">

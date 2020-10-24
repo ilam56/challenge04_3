@@ -1,7 +1,7 @@
 <a class="btn btn-primary" routerLink = "" role="button">Back</a>
 <h3>Businesses for {{cityName}}</h3>
 <hr>
-<a class="btn btn-primary" routerLink = "/addreview" role="button">Add</a>
+<a class="btn btn-primary back" routerLink = "/addreview" role="button">Add</a>
 <div *ngFor = "let business of businessData" class="container">
   <h3><a routerLink = "/reviews" [queryParams]="{cityId: id, busId: business.id}">{{business.businessName}}</a></h3>
   <div class="panel panel-default">

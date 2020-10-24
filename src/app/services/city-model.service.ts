@@ -54,12 +54,12 @@ export class CityModelService {
       }
     }
   }
-  addBusData(formObject: Business) {
+  addBusData(formObject: Business, id: string) {
     this.data = this.getData();
     var x;
     var count1 = 0;
     for (x of this.data) {
-      if (x.cityName === formObject.city){
+      if (x.id === id){
         break;
       } 
       count1 += 1;

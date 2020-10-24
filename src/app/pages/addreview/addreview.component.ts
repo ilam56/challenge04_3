@@ -93,9 +93,9 @@ export class AddreviewComponent implements OnInit {
         id: this.idModel.generateId(),
         businessName: this.businessForm.value.businessName,
         service: this.businessForm.value.service,
-        city: this.businessForm.value.city,
+        city: this.cityModel.getCityName(this.businessForm.value.city),
         reviews: this.reviewData
-      });
+      },this.businessForm.value.city);
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
