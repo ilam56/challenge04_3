@@ -88,7 +88,7 @@ export class AddreviewComponent implements OnInit {
   }
 
   submitBusiness() {
-    if(!this.businessForm.invalid){
+    if(!this.businessForm.invalid && this.spamCheck == false){
       this.cityData = this.cityModel.addBusData({
         id: this.idModel.generateId(),
         businessName: this.businessForm.value.businessName,
@@ -108,7 +108,7 @@ export class AddreviewComponent implements OnInit {
     }
   }
   submitReview() {
-    if(!this.reviewForm.invalid){
+    if(!this.reviewForm.invalid && this.spamCheck == false){
       this.cityData = this.cityModel.addRevData({
         id: this.idModel.generateId(),
         businessName: this.reviewForm.value.businessName,
