@@ -21,8 +21,6 @@ export class CityModelService {
     this.data.push(formObject);
 
     localStorage.setItem('cities', JSON.stringify(this.data));
-
-    console.log(this.data);
     return this.data;
   }
 
@@ -40,10 +38,7 @@ export class CityModelService {
     this.data = this.getData();
     var x;
     for (x of this.data){
-      console.log("x.id: " + x.id + ", id: " + id)
       if (x.id === id){
-        console.log("test");
-        console.log(this.getData());
         return x.businesses;
       }
     }
@@ -72,8 +67,6 @@ export class CityModelService {
     this.data[count1].businesses.push(formObject);
 
     localStorage.setItem('cities', JSON.stringify(this.data));
-
-    console.log(this.data);
     return this.data;
   }
 
@@ -87,27 +80,18 @@ export class CityModelService {
     for (x of this.data) {
       if (x.id === cityId){
         for(k of x.businesses){
-          console.log("point1");
-          console.log("k.id: " + k.id + " busId: " + busId);
           if(k.id === busId){
-            console.log("point2");
             break;
           }
-          console.log('point3');
           count2 += 1;
         }
         break;
       } 
       count1 += 1;
     }
-    console.log(count1);
-    console.log(count2);
-    console.log(this.data[count1][count2]);
     this.data[count1].businesses[count2].reviews.push(formObject);
 
     localStorage.setItem('cities', JSON.stringify(this.data));
-
-    console.log(this.data);
     return this.data;
   }
 

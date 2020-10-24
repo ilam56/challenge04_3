@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { City } from '../../types/city';
 import { CityModelService } from '../../services/city-model.service';
 import { Business } from '../../types/business';
-import { BusinessModelService } from '../../services/business-model.service';
 import { ActivatedRoute} from '@angular/router';
 
 
@@ -17,7 +15,6 @@ export class BusinessesComponent implements OnInit {
   avgReview: number;
   cityName: string
   id: string;
-  private sub: any;
 
   constructor(private cityModel: CityModelService, private route: ActivatedRoute) {
     route.queryParams.subscribe( params => {
@@ -43,7 +40,7 @@ export class BusinessesComponent implements OnInit {
   }
   
   ngOnInit() {
-    console.log(this.businessData);
+    //console.log(this.businessData);
   }
 
 }

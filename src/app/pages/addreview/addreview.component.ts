@@ -78,8 +78,7 @@ export class AddreviewComponent implements OnInit {
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
-      console.log("invalid");
-      console.log(this.cityname.errors.pattern);
+      console.log("invalid form");
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.cityForm.controls).forEach(field => { 
           const control = this.cityForm.get(field);           
@@ -100,7 +99,7 @@ export class AddreviewComponent implements OnInit {
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
-      console.log("invalid");
+      console.log("invalid form");
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.businessForm.controls).forEach(field => { 
           const control = this.businessForm.get(field);           
@@ -121,7 +120,7 @@ export class AddreviewComponent implements OnInit {
       this.spamCheck = true;
       this.router.navigate(['']);
     } else {
-      console.log("invalid");
+      console.log("invalid form");
       //next 4 lines from https://loiane.com/2017/08/angular-reactive-forms-trigger-validation-on-submit/
         Object.keys(this.reviewForm.controls).forEach(field => { 
           const control = this.reviewForm.get(field);           
